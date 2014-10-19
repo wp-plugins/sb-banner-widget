@@ -11,8 +11,6 @@ function sb_banner_widget_check_core() {
     return $sb_core_installed;
 }
 
-sb_banner_widget_check_core();
-
 function sb_banner_widget_activation() {
     if(!sb_banner_widget_check_core()) {
         wp_die(sprintf(__('You must install and activate plugin %1$s first! Click here to %2$s.', 'sb-banner-widget'), '<a href="https://wordpress.org/plugins/sb-core/">SB Core</a>', sprintf('<a href="%1$s">%2$s</a>', admin_url('plugins.php'), __('go back', 'sb-banner-widget'))));
@@ -20,6 +18,10 @@ function sb_banner_widget_activation() {
     do_action('sb_banner_widget_activation');
 }
 register_activation_hook( SB_BANNER_WIDGET_FILE, 'sb_banner_widget_activation' );
+
+if(!sb_banner_widget_check_core()) {
+    return;
+}
 
 function sb_banner_widget_settings_link($links) {
     if(sb_banner_widget_check_core()) {

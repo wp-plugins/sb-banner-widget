@@ -42,7 +42,6 @@ class SB_Banner_Widget extends WP_Widget {
 			$banner_image = '';
 			$banner_url = '';
 		}
-		//echo $show_title;
 		?>
 		<div class="sb-banner-widget sb-widget">
             <?php
@@ -89,17 +88,14 @@ class SB_Banner_Widget extends WP_Widget {
 	
 	public function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		
 		$show_title = isset($new_instance['use_title']) ? 1 : 0;
 		$title = isset($new_instance['title']) ? $new_instance['title'] : '';
 		$banner_image = isset($new_instance['banner_image']) ? $new_instance['banner_image'] : '';
 		$banner_url = isset($new_instance['banner_url']) ? $new_instance['banner_url'] : '';
-		
 		$instance['title'] = $title;
 		$instance['banner_image'] = $banner_image;
 		$instance['banner_url'] = $banner_url;
 		$instance['use_title'] = $show_title;
-		
 		return $instance;
 	}
 }
