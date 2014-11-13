@@ -42,48 +42,33 @@ class SB_Banner_Widget extends WP_Widget {
 			$banner_image = '';
 			$banner_url = '';
 		}
-		?>
-		<div class="sb-banner-widget sb-widget">
-            <?php
-            $args = array(
-                'id'            => $this->get_field_id('title'),
-                'name'          => $this->get_field_name('title'),
-                'value'         => $title,
-                'label_text'    => __('Title:', 'sb-banner-widget'),
-                'description'   => ''
-            );
-            SB_Widget_Field::text($args);
+		SB_Widget_Field::before('sb-banner-widget');
+        SB_Widget_Field::title($this->get_field_id('title'), $this->get_field_name('title'), $title);
 
-            $args = array(
-                'id'            => $this->get_field_id('banner_image'),
-                'name'          => $this->get_field_name('banner_image'),
-                'value'         => $banner_image,
-                'label_text'    => __('Image url:', 'sb-banner-widget'),
-                'description'   => ''
-            );
-            SB_Widget_Field::media_upload($args);
+        $args = array(
+            'id' => $this->get_field_id('banner_image'),
+            'name' => $this->get_field_name('banner_image'),
+            'value' => $banner_image,
+            'label' => __('Image url:', 'sb-banner-widget')
+        );
+        SB_Widget_Field::media_upload($args);
 
-            $args = array(
-                'id'            => $this->get_field_id('banner_url'),
-                'name'          => $this->get_field_name('banner_url'),
-                'value'         => $banner_url,
-                'label_text'    => __('Image link:', 'sb-banner-widget'),
-                'description'   => ''
-            );
-            SB_Widget_Field::text($args);
-            
-			$args = array(
-				'id'			=> $this->get_field_id('use_title'),
-				'name'			=> $this->get_field_name('use_title'),
-				'value'			=> $show_title,
-				'description'	=> '',
-                'label_text'    => __('Show title', 'sb-banner-widget'),
-				'paragraph_id'	=> 'useTitle'
-			);
-			SB_Widget_Field::checkbox($args);
-            ?>
-		</div>
-		<?php
+        $args = array(
+            'id' => $this->get_field_id('banner_url'),
+            'name' => $this->get_field_name('banner_url'),
+            'value' => $banner_url,
+            'label' => __('Image link:', 'sb-banner-widget')
+        );
+        SB_Widget_Field::text($args);
+
+        $args = array(
+            'id' => $this->get_field_id('use_title'),
+            'name' => $this->get_field_name('use_title'),
+            'value' => $show_title,
+            'label' => __('Show title', 'sb-banner-widget')
+        );
+        SB_Widget_Field::checkbox($args);
+        SB_Widget_Field::after();
 	}
 	
 	public function update($new_instance, $old_instance) {

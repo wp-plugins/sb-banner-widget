@@ -1,4 +1,5 @@
 (function($){
+    /*
     var body = $('body'),
         sb_option = $('div.sb-option'),
         option_form = $('#sb-options-form'),
@@ -42,4 +43,5 @@
         }
         wp.media.model.settings.post.id = oldPostID;
     }
+    */
 })(jQuery);
