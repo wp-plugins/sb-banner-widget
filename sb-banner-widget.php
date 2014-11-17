@@ -4,7 +4,7 @@ Plugin Name: SB Banner Widget
 Plugin URI: http://hocwp.net/
 Description: SB Banner Widget is a plugin that allows to add banner widget on your WordPress site.
 Author: SB Team
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://hocwp.net/
 Text Domain: sb-banner-widget
 Domain Path: /languages/
