@@ -16,7 +16,7 @@ register_activation_hook( SB_BANNER_WIDGET_FILE, 'sb_banner_widget_activation' )
 function sb_banner_widget_check_admin_notices() {
     if(!sb_banner_widget_check_core()) {
         unset($_GET['activate']);
-        printf('<div class="error"><p><strong>' . __('Error', 'sb-banner-widget') . ':</strong> ' . __('The plugin with name %1$s has been deactivated because of missing %2$s plugin', 'sb-tbfa') . '.</p></div>', '<strong>SB Banner Widget</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Core</a>', 'https://wordpress.org/plugins/sb-core/'));
+        printf('<div class="error"><p><strong>' . __('Error', 'sb-banner-widget') . ':</strong> ' . __('The plugin with name %1$s has been deactivated because of missing %2$s plugin', 'sb-banner-widget') . '.</p></div>', '<strong>SB Banner Widget</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Core</a>', 'https://wordpress.org/plugins/sb-core/'));
         deactivate_plugins(SB_BANNER_WIDGET_BASENAME);
     }
 }
