@@ -4,7 +4,7 @@ Donate link: http://hocwp.net/donate/
 Tags: sb, banner, sb plugin, sb banner, sb team, sb banner widget, widget, image widget, banner widget
 Requires at least: 3.9
 Tested up to: 4.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,10 @@ Please visit [homepage](http://hocwp.net) for more details.
 Please update SB Core before you upgrade this plugin to new version.
 
 == Changelog ==
+
+= 1.0.4 =
+* Update check core functions.
+* Remove Settings link from plugins page.
 
 = 1.0.3 =
 Update functions for add media button.

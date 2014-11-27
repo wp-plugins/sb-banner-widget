@@ -2,22 +2,27 @@
 function sb_banner_widget_check_core() {
     $activated_plugins = get_option('active_plugins');
     $sb_core_installed = in_array('sb-core/sb-core.php', $activated_plugins);
-    if(!$sb_core_installed) {
-        $sb_plugins = array(SB_BANNER_WIDGET_BASENAME);
-        $activated_plugins = get_option('active_plugins');
-        $activated_plugins = array_diff($activated_plugins, $sb_plugins);
-        update_option('active_plugins', $activated_plugins);
-    }
     return $sb_core_installed;
 }
 
 function sb_banner_widget_activation() {
-    if(!sb_banner_widget_check_core()) {
-        wp_die(sprintf(__('You must install and activate plugin %1$s first! Click here to %2$s.', 'sb-banner-widget'), '<a href="https://wordpress.org/plugins/sb-core/">SB Core</a>', sprintf('<a href="%1$s">%2$s</a>', admin_url('plugins.php'), __('go back', 'sb-banner-widget'))));
+    if(!current_user_can('activate_plugins')) {
+        return;
     }
     do_action('sb_banner_widget_activation');
 }
 register_activation_hook( SB_BANNER_WIDGET_FILE, 'sb_banner_widget_activation' );
+
+function sb_banner_widget_check_admin_notices() {
+    if(!sb_banner_widget_check_core()) {
+        unset($_GET['activate']);
+        printf('<div class="error"><p><strong>' . __('Error', 'sb-banner-widget') . ':</strong> ' . __('The plugin with name %1$s has been deactivated because of missing %2$s plugin', 'sb-tbfa') . '.</p></div>', '<strong>SB Banner Widget</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Core</a>', 'https://wordpress.org/plugins/sb-core/'));
+        deactivate_plugins(SB_BANNER_WIDGET_BASENAME);
+    }
+}
+if(!empty($GLOBALS['pagenow']) && 'plugins.php' === $GLOBALS['pagenow']) {
+    add_action('admin_notices', 'sb_banner_widget_check_admin_notices', 0);
+}
 
 if(!sb_banner_widget_check_core()) {
     return;
@@ -30,7 +35,7 @@ function sb_banner_widget_settings_link($links) {
     }
     return $links;
 }
-add_filter('plugin_action_links_' . SB_BANNER_WIDGET_BASENAME, 'sb_banner_widget_settings_link');
+//add_filter('plugin_action_links_' . SB_BANNER_WIDGET_BASENAME, 'sb_banner_widget_settings_link');
 
 function sb_banner_widget_textdomain() {
     load_plugin_textdomain('sb-banner-widget', false, SB_BANNER_WIDGET_DIRNAME . '/languages/');
