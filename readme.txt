@@ -47,7 +47,7 @@ Please visit [homepage](http://hocwp.net) for more details.
 
 == Screenshots ==
 
-Please visit [homepage](http://hocwp.net) for more details.
+1. SB Banner widget on sidebar area.
 
 == Upgrade Notice ==
 
